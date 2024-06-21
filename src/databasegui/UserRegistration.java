@@ -4,12 +4,15 @@
  */
 package databasegui;
 
+import java.sql.*;
+import javax.swing.*;
 /**
  *
  * @author win10
  */
 public class UserRegistration extends javax.swing.JFrame {
-
+Connection con = null;
+PreparedStatement pst = null;
     /**
      * Creates new form UserLogin
      */
@@ -28,8 +31,8 @@ public class UserRegistration extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtUname = new javax.swing.JTextArea();
+        Pword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -40,16 +43,16 @@ public class UserRegistration extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(234, 225, 223));
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Username_text");
-        jScrollPane1.setViewportView(jTextArea1);
+        txtUname.setBackground(new java.awt.Color(255, 255, 255));
+        txtUname.setColumns(20);
+        txtUname.setForeground(new java.awt.Color(0, 0, 0));
+        txtUname.setRows(5);
+        txtUname.setText("Username_text");
+        jScrollPane1.setViewportView(txtUname);
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setText("jPasswordField1");
+        Pword.setBackground(new java.awt.Color(255, 255, 255));
+        Pword.setForeground(new java.awt.Color(0, 0, 0));
+        Pword.setText("jPasswordField1");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -92,7 +95,7 @@ public class UserRegistration extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Pword, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(260, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -113,7 +116,7 @@ public class UserRegistration extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Pword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
@@ -149,7 +152,26 @@ public class UserRegistration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       try{
+          String query = "INSERT INTO `tbl_cite`(`std_ID`, `std_lastname`, `std_firstname`, `std_middlename`, `std_course`, `std_year`, `std_address`, `std_contactnum`, `std_bday`, `std_position`, `std_affiliation`) VALUES ('?,?,?,?,?,?,?,?,?,?,?')";
+          con = DriverManager.getConnection("jdbc:mysql://localhost/dbcite","root","");
+          pst = con.prepareStatement(query);
+          
+          pst.setString(1,txtUname.getText());
+          pst.setString(2,Pword.getText());
+           pst.setString(3,txtUname.getText());
+          pst.setString(4,Pword.getText());
+           pst.setString(5,txtUname.getText());
+          pst.setString(6,Pword.getText());
+           pst.setString(7,txtUname.getText());
+          pst.setString(8,Pword.getText());
+           pst.setString(9,txtUname.getText());
+          pst.setString(10,Pword.getText());
+          pst.setString(11,Pword.getText());
+          
+       }catch(Exception ex){
+           
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -189,14 +211,14 @@ public class UserRegistration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Pword;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtUname;
     // End of variables declaration//GEN-END:variables
 }

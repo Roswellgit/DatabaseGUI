@@ -30,45 +30,35 @@ PreparedStatement pst = null;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtUname = new javax.swing.JTextArea();
-        Pword = new javax.swing.JPasswordField();
+        f_pword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        f_uname = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(234, 225, 223));
 
-        txtUname.setBackground(new java.awt.Color(255, 255, 255));
-        txtUname.setColumns(20);
-        txtUname.setForeground(new java.awt.Color(0, 0, 0));
-        txtUname.setRows(5);
-        txtUname.setText("Username_text");
-        jScrollPane1.setViewportView(txtUname);
-
-        Pword.setBackground(new java.awt.Color(255, 255, 255));
-        Pword.setForeground(new java.awt.Color(0, 0, 0));
-        Pword.setText("jPasswordField1");
+        f_pword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_pwordActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("REGISTRATION");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Username:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Password:");
 
         jButton2.setBackground(new java.awt.Color(60, 179, 113));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Register");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,11 +81,11 @@ PreparedStatement pst = null;
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1))
+                                .addComponent(f_uname))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Pword, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(f_pword, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(260, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -109,14 +99,12 @@ PreparedStatement pst = null;
                 .addGap(217, 217, 217)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
-                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Pword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(f_uname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(f_pword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
@@ -153,26 +141,26 @@ PreparedStatement pst = null;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try{
-          String query = "INSERT INTO `tbl_cite`(`std_ID`, `std_lastname`, `std_firstname`, `std_middlename`, `std_course`, `std_year`, `std_address`, `std_contactnum`, `std_bday`, `std_position`, `std_affiliation`) VALUES ('?,?,?,?,?,?,?,?,?,?,?')";
+          String query = "INSERT INTO `user_dbcite`(`username`, `password`) VALUES (?,?)";
           con = DriverManager.getConnection("jdbc:mysql://localhost/dbcite","root","");
           pst = con.prepareStatement(query);
           
-          pst.setString(1,txtUname.getText());
-          pst.setString(2,Pword.getText());
-           pst.setString(3,txtUname.getText());
-          pst.setString(4,Pword.getText());
-           pst.setString(5,txtUname.getText());
-          pst.setString(6,Pword.getText());
-           pst.setString(7,txtUname.getText());
-          pst.setString(8,Pword.getText());
-           pst.setString(9,txtUname.getText());
-          pst.setString(10,Pword.getText());
-          pst.setString(11,Pword.getText());
+          
+          pst.setString(1,f_uname.getText());
+          pst.setString(2,f_pword.getText());
+          
+          pst.executeUpdate();
+          
+          JOptionPane.showMessageDialog(null,"Registered Successfully");
           
        }catch(Exception ex){
-           
+            JOptionPane.showMessageDialog(null,ex);
        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void f_pwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_pwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_pwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,14 +199,13 @@ PreparedStatement pst = null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField Pword;
+    private javax.swing.JPasswordField f_pword;
+    private javax.swing.JTextField f_uname;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtUname;
     // End of variables declaration//GEN-END:variables
 }

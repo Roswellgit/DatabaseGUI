@@ -171,9 +171,10 @@ try{
    
    if(rs.next()){
        dispose();
-       MenuChoice ch = new MenuChoice();
+       LoadingScreen l = new LoadingScreen();
          JOptionPane.showMessageDialog(null,"Login Successful");
-       ch.setVisible(true);
+       l.setVisible(true);
+       dispose();
      
    }
    else{
@@ -185,7 +186,10 @@ try{
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+dispose();
+UserRegistration ur = new UserRegistration();
+ur.setVisible(true); 
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -8,13 +8,34 @@ package databasegui;
  *
  * @author win10
  */
-public class LoadingScreen extends javax.swing.JFrame {
+public class LoadingScreen extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form UserLogin
      */
     public LoadingScreen() {
         initComponents();
+        Thread t = new Thread(this);
+        
+        t.start();
+        
+    }
+    
+    @Override
+    public void run(){
+        for(int i = 1; i <= 100; i++){
+            try{
+                Thread.sleep(20);
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+            lbl_count.setText(i + " %");
+            progbar.setValue(i);
+        }
+        MenuChoice m = new MenuChoice();
+        m.setVisible(true);
+        dispose();
     }
 
     /**
@@ -29,7 +50,8 @@ public class LoadingScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        progbar = new javax.swing.JProgressBar();
+        lbl_count = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,7 +61,11 @@ public class LoadingScreen extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("LOADING...");
 
-        jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
+        progbar.setBackground(new java.awt.Color(255, 255, 255));
+        progbar.setForeground(new java.awt.Color(60, 179, 113));
+
+        lbl_count.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_count.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -48,15 +74,18 @@ public class LoadingScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(427, 427, 427)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(progbar, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(274, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_count, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(506, 506, 506))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,9 +93,14 @@ public class LoadingScreen extends javax.swing.JFrame {
                 .addGap(182, 182, 182)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
+                .addComponent(progbar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_count)))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
 
@@ -136,6 +170,7 @@ public class LoadingScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lbl_count;
+    private javax.swing.JProgressBar progbar;
     // End of variables declaration//GEN-END:variables
 }

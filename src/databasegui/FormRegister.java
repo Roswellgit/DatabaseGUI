@@ -78,6 +78,12 @@ PreparedStatement pst = null;
             }
         });
 
+        f_lname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f_lnameActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Student ID");
 
@@ -324,6 +330,10 @@ dispose();
 MenuChoice ch = new MenuChoice();
 ch.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void f_lnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_lnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_f_lnameActionPerformed
 
     /**
      * @param args the command line arguments
